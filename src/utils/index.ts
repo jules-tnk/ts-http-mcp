@@ -1,1 +1,1 @@
-export * from './http-request-validator.js';
+export * from './http-request-validator';

@@ -2,7 +2,6 @@
 	"name": "http-mcp",
 	"version": "1.0.0",
 	"description": "MCP server for sending HTTP requests",
-	"type": "module",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "tsc",

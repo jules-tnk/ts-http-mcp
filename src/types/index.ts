@@ -1,2 +1,2 @@
-export * from './http.js';
-export * from './mcp.js';
+export * from './http';
+export * from './mcp';
