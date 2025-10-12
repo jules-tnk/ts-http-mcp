@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  http-mcp-stream:
+    build: .
+    container_name: http-mcp-server
+    environment:
+      - MCP_TRANSPORT=httpStream
+      - MCP_PORT=3000
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  http-mcp-stdio:
+    build: .
+    container_name: http-mcp-stdio
+    environment:
+      - MCP_TRANSPORT=stdio
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
