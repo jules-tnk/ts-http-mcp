@@ -3,6 +3,10 @@
 	"version": "0.1.1",
 	"description": "MCP server for sending HTTP requests",
 	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"bin": {
 		"@jules-tnk/ts-http-mcp": "dist/index.js"
 	},
