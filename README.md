@@ -2,17 +2,17 @@
 
 A Model Context Protocol (MCP) server that enables AI agents to send HTTP requests to any endpoint with full control over methods, headers, query parameters, and request bodies.
 
+**Note**: This MCP server only supports stdio transport.
+
 # Table of Contents
 
 - [Features](#features)
-- [Local Setup](#local-setup)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Local Development](#local-development)
   - [Install](#install)
   - [Build](#build)
-  - [Environment Variables](#environment-variables)
   - [Run](#run)
-- [Use with Docker](#use-with-docker)
-  - [HTTP-STREAM Transport](#http-stream-transport)
-  - [STDIO transport](#stdio-transport)
 
 # Features
 
@@ -23,8 +23,54 @@ A Model Context Protocol (MCP) server that enables AI agents to send HTTP reques
 - Comprehensive error handling
 - TypeScript with strict type safety
 - Clean, modular architecture
+- STDIO transport support for seamless integration with MCP clients
 
-# Local Setup
+# Installation
+
+Install the package globally using npm:
+
+```bash
+npm install -g @jules-tnk/ts-http-mcp
+```
+
+Or use npx to run it directly:
+
+```bash
+npx @jules-tnk/ts-http-mcp
+```
+
+# Configuration
+
+## Claude Desktop
+
+Add the following configuration to your Claude Desktop config file (`claude_desktop_config.json`):
+
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Linux**: `~/.config/claude/claude_desktop_config.json`
+
+```json
+{
+	"mcpServers": {
+		"http-mcp": {
+			"command": "npx",
+			"args": ["@jules-tnk/ts-http-mcp"]
+		}
+	}
+}
+```
+
+After updating the configuration, restart Claude Desktop to load the MCP server.
+
+## Other MCP Clients
+
+For other MCP clients that support stdio transport, configure them to run:
+
+```bash
+npx @jules-tnk/ts-http-mcp
+```
+
+# Local Development
 
 ## Install
 
@@ -38,47 +84,32 @@ pnpm install
 pnpm build
 ```
 
-## Environment Variables
-
-The server can be configured using the following environment variables:
-
-- **MCP_TRANSPORT**: Transport mode (`stdio` or `httpStream`) - Default: `stdio`
-- **MCP_PORT**: Port for httpStream transport - Default: `3000`
-
-You can copy `.env.example` to `.env` and customize the values:
-
-```bash
-cp .env.example .env
-```
-
 ## Run
 
 ```bash
 pnpm start
 ```
 
-# Use with Docker
+## Testing
 
-## Build the docker image
+To test the MCP server locally, you can run it directly and interact with it through stdio:
 
-```
-bash docker build -t http-mcp .
-```
-
-## HTTP-STREAM Transport
-
-The [`docker-compose.yml`](docker-compose.yml) file provide an example for running the server with the `httpStream` transport.
-
-When the server is running, you can the server to your MCP client's configuration. For example for `Claude Desktop`:
-
-```json
-
+```bash
+pnpm start
 ```
 
-## STDIO transport
+The server will start and listen for MCP protocol messages on stdin/stdout.
 
-The server can be used with the `stdio` transport by directly adding the required configuration to your MCP client's configuration. For example for `Claude Desktop`:
+# Usage
 
-```json
+Once configured with your MCP client, the HTTP MCP server provides the following capabilities:
 
-```
+- **GET requests**: Retrieve data from any HTTP endpoint
+- **POST requests**: Send data to endpoints that accept POST requests
+- **PUT/PATCH requests**: Update resources on remote servers
+- **DELETE requests**: Remove resources from remote servers
+- **Custom headers**: Add authentication, content-type, and other headers
+- **Query parameters**: Include URL parameters with proper encoding
+- **Request bodies**: Send JSON, form data, or raw content
+
+The server handles all the HTTP communication details, error handling, and response processing, making it easy for AI agents to interact with web APIs and services.
