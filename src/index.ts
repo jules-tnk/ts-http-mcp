@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { ConsoleLogger, AxiosHttpClient } from './implementations';
 import { FastMcpServer } from './implementations/fastmcp-server';
 
