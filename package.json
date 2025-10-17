@@ -4,7 +4,7 @@
 	"description": "MCP server for sending HTTP requests",
 	"main": "dist/index.js",
 	"bin": {
-		"@jules-tnk/http-mcp": "dist/index.js"
+		"@jules-tnk/ts-http-mcp": "dist/index.js"
 	},
 	"scripts": {
 		"build": "tsc",
