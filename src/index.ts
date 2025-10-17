@@ -1,5 +1,4 @@
 import { ConsoleLogger, AxiosHttpClient } from './implementations';
-import { config } from './config';
 import { FastMcpServer } from './implementations/fastmcp-server';
 
 const logger = new ConsoleLogger();
@@ -10,7 +9,6 @@ async function main() {
 	logger.info('Starting HTTP MCP Server...');
 
 	const httpMcpServer = new FastMcpServer({
-		config,
 		logger,
 		httpClient,
 	});

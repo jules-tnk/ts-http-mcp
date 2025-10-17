@@ -1,54 +1,31 @@
 import { FastMCP } from 'fastmcp';
 import { HttpClient, Logger } from '../interfaces';
-import { httpRequestZodSchema, McpConfig, McpResponse } from '../types';
+import { httpRequestZodSchema, McpResponse } from '../types';
 import { validateHttpRequest } from '../utils';
 
 export class FastMcpServer {
 	private mcp = new FastMCP({
-		name: 'http-mcp',
-		version: '1.0.0',
+		name: '@jules-tnk/http-mcp',
+		version: '0.0.1',
 	});
 	private logger: Logger;
 	private httpClient: HttpClient;
-	private config: McpConfig;
 
 	constructor({
-		config,
 		logger,
 		httpClient,
 	}: {
-		config: McpConfig;
 		logger: Logger;
 		httpClient: HttpClient;
 	}) {
-		this.config = config;
 		this.logger = logger;
 		this.httpClient = httpClient;
 		this.setupTools();
 	}
 
 	async startServer() {
-		switch (this.config.transport) {
-			case 'stdio':
-				await this.mcp.start({ transportType: 'stdio' });
-				this.logger.info('Server started successfully with stdio transport');
-				break;
-			case 'httpStream':
-				await this.mcp.start({
-					transportType: 'httpStream',
-					httpStream: {
-						port: this.config.port,
-						endpoint: '/sse',
-					},
-				});
-				this.logger.info(
-					`Server started successfully with httpStream transport on port ${this.config.port}`
-				);
-				break;
-			default:
-				this.logger.error('Invalid transport type');
-				process.exit(1);
-		}
+		await this.mcp.start({ transportType: 'stdio' });
+		this.logger.info('Server started successfully with stdio transport');
 	}
 
 	private setupTools() {
