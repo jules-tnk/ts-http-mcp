@@ -6,7 +6,7 @@ import { validateHttpRequest } from '../utils';
 export class FastMcpServer {
 	private mcp = new FastMCP({
 		name: '@jules-tnk/http-mcp',
-		version: '0.0.1',
+		version: '0.2.1',
 	});
 	private logger: Logger;
 	private httpClient: HttpClient;
