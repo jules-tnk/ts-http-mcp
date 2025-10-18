@@ -117,3 +117,7 @@ Once configured with your MCP client, the HTTP MCP server provides the following
 - **Request bodies**: Send JSON, form data, or raw content
 
 The server handles all the HTTP communication details, error handling, and response processing, making it easy for AI agents to interact with web APIs and services.
+
+# License
+
+MIT License - see the [LICENSE.md](LICENSE.md) file for details.
