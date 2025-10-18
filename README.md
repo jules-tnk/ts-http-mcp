@@ -4,6 +4,10 @@ A Model Context Protocol (MCP) server that enables AI agents to send HTTP reques
 
 **Note**: This MCP server only supports stdio transport.
 
+# MCP Badge from LobeHub
+
+[![MCP Badge](https://lobehub.com/badge/mcp-full/jules-tnk-ts-http-mcp?theme=light)](https://lobehub.com/mcp/jules-tnk-ts-http-mcp)
+
 # Table of Contents
 
 - [Features](#features)
